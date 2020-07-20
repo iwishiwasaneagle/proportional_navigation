@@ -40,6 +40,7 @@ jobs:
       uses: coverallsapp/github-action@master
       with:
         github-token: ${{ secrets.github_token }}
+        path-to-lcov: .coverage
         flag-name: run-${{ matrix.test_number }}
         parallel: true
 
@@ -51,5 +52,4 @@ jobs:
       uses: coverallsapp/github-action@master
       with:
         github-token: ${{ secrets.github_token }}
-        path-to-lcov: .coverage 
         parallel-finished: true
