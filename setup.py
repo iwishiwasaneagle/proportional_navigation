@@ -4,7 +4,7 @@ with open("README.md", "r") as fh:
     long_description = fh.read()
 
 setuptools.setup(
-    name="proportional_navigation-iwishiwasaneagle", # Replace with your own username
+    name="proportional_navigation-iwishiwasaneagle",
     version="0.1",
     author="Jan-Hendrik Ewers",
     author_email="jh.ewers@gmail.com",
