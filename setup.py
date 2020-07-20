@@ -9,7 +9,7 @@ setuptools.setup(
     author="Jan-Hendrik Ewers",
     author_email="jh.ewers@gmail.com",
     description="A package to do proportional navigation",
-    long_description="A package to do proportional navigation as outlined in https://en.wikipedia.org/wiki/Proportional_navigation",
+    long_description=long_description,
     long_description_content_type="text/markdown",
     url="https://github.com/iwishiwasaneagle/proportional_navigation",
     packages=setuptools.find_packages(),
