@@ -20,7 +20,7 @@ if __name__ == "__main__":
         Vc = ret['Vc']
 
         t = t+dt
-        if R < 5 or t > 20:6
+        if R < 5 or t > 20:
             if Vc < 0:
                 terminate = True
 
