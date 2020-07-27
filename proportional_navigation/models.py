@@ -24,9 +24,6 @@ class HeadingVelocity(Vehicle):
         self._psi = value
         self.xd = self.V * np.cos(np.deg2rad(self._psi))
         self.yd = self.V * np.sin(np.deg2rad(self._psi))
-    @psi.deleter
-    def psi(self):
-        del self._psi
 
 class GlobalVelocity(Vehicle):
     def __init__(self,x,y,xd,yd):
