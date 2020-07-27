@@ -1,5 +1,9 @@
 import numpy as np
-import matplotlib.pyplot as plt
+try:
+    import matplotlib.pyplot as plt
+    plt_found = True
+except ModuleNotFoundError:
+    plt_found = False
 import proportional_navigation as PN
 
 if __name__ == "__main__":
@@ -38,6 +42,9 @@ if __name__ == "__main__":
         log['target']['x'].append(target.x)
         log['target']['y'].append(target.y)
     
-    plt.plot(log['pursuer']['y'],log['pursuer']['x'])
-    plt.plot(log['target']['y'],log['target']['x'])
-    plt.show()
+    if plt_found:
+        plt.plot(log['pursuer']['y'],log['pursuer']['x'])
+        plt.plot(log['target']['y'],log['target']['x'])
+        plt.show()
+    else:
+        print("matplotlib.pyplot was not found in the env. Plot of xy graph will not be shown")
