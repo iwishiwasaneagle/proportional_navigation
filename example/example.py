@@ -7,8 +7,8 @@ except ModuleNotFoundError:
 import proportional_navigation as PN
 
 if __name__ == "__main__":
-    pursuer = PN.Body(0,0,0,5)
-    target = PN.Body(100,100,50,2)
+    pursuer = PN.HeadingVelocity(0,0,0,5)
+    target = PN.HeadingVelocity(100,100,50,2)
     options = PN.PNOptions(return_R=True, return_Vc=True)
     dt = 0.01
     N = 3
