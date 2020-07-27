@@ -99,6 +99,3 @@ class TestPNOptions(unittest.TestCase):
 
         ret3 = PN.PN(PN.HeadingVelocity(10,1,0,0),PN.GlobalVelocity(0,10,10,0)).calculate()
         self.assertIsInstance(ret3,float)
-
-if __name__ == '__main__':
-    unittest.main()
