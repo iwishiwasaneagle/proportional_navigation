@@ -39,3 +39,5 @@ jobs:
       run: |
         coverage run -m pytest test.py
         coveralls
+    - name: Run example
+      run: python3 example/example.py
