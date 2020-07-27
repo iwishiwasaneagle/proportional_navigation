@@ -1,5 +1,6 @@
 import proportional_navigation as PN
 import unittest
+import numpy as np
 
 class TestExceptions(unittest.TestCase):
     def test_invalidPNGainInput(self):
@@ -42,16 +43,16 @@ class TestModels(unittest.TestCase):
         self.assertEqual(model.x, x)
         self.assertEqual(model.y, y)
         self.assertEqual(model.V, V)
-        self.assertAlmostEqual(model.xd,86.603,3)
-        self.assertAlmostEqual(model.yd,50,3)
+        self.assertAlmostEqual(model.xd,V*np.cos(np.deg2rad(psi1)),3)
+        self.assertAlmostEqual(model.yd,V*np.sin(np.deg2rad(psi1)),3)
 
         model.psi = psi2
         self.assertEqual(model.psi, psi2)
         self.assertEqual(model.x, x)
         self.assertEqual(model.y, y)
         self.assertEqual(model.V, V)
-        self.assertAlmostEqual(model.xd,70.711,3)
-        self.assertAlmostEqual(model.yd,70.711,3)
+        self.assertAlmostEqual(model.xd,V*np.cos(np.deg2rad(psi2)),3)
+        self.assertAlmostEqual(model.yd,V*np.sin(np.deg2rad(psi2)),3)
 
     def test_GlobalVelocity(self):
         x = 0
@@ -64,6 +65,7 @@ class TestModels(unittest.TestCase):
         self.assertEqual(model.y, y)
         self.assertEqual(model.xd, xd)
         self.assertEqual(model.yd, yd)
+        self.assertAlmostEqual(model.psi, np.rad2deg(np.arctan2(yd,xd)),3)
         
 
 class TestPNOptions(unittest.TestCase):
@@ -99,3 +101,12 @@ class TestPNOptions(unittest.TestCase):
 
         ret3 = PN.PN(PN.HeadingVelocity(10,1,0,0),PN.GlobalVelocity(0,10,10,0)).calculate()
         self.assertIsInstance(ret3,float)
+
+class TestCalculate(unittest.TestCase):
+    def test_mixedModels(self):
+        glob = PN.GlobalVelocity(0,10,100,0)
+        head = PN.HeadingVelocity(90,10,10,100)
+        try:
+            PN.PN(glob,head).calculate()
+        except Exception as e:
+            self.fail(e)
