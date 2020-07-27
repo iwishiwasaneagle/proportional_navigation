@@ -99,3 +99,14 @@ class TestPNOptions(unittest.TestCase):
 
         ret3 = PN.PN(PN.HeadingVelocity(10,1,0,0),PN.GlobalVelocity(0,10,10,0)).calculate()
         self.assertIsInstance(ret3,float)
+
+class TestCalculate(unittest.TestCase):
+    def test_mixedModels(self):
+        glob = PN.GlobalVelocity(0,10,100,0)
+        head = PN.HeadingVelocity(90,10,10,100)
+        try:
+            PN.PN(glob,head).calculate()
+        except Exception as e:
+            self.fail(e)
+
+
