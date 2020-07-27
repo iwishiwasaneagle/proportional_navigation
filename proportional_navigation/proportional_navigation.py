@@ -1,7 +1,37 @@
 import numpy as np
-from .models import Vehicle
-from .exceptions import (InvalidProportionalGainError,OutOfBoundsRangeError)
 
+class InvalidProportionalGainError(Exception):
+    """Exception raised for errors in Proportional Gain (N).
+
+    Attributes:
+        N -- input Proportional Gain which caused the error
+        message -- explanation of the error
+    """
+    def __init__(self, N, message="Proportional Gain is not above 0"):
+        self.N = N
+        self.message = message
+        super().__init__(self.message)
+
+class OutOfBoundsRangeError(Exception):
+    """Exception raised for errors in range.
+
+    Attributes:
+        R -- input range which caused the error
+        message -- explanation of the error
+    """
+    def __init__(self, R, message="Range is not greater than 0"):
+        self.R = R
+        self.message = message
+        super().__init__(self.message)
+
+class Body(object):
+    def __init__(self,psi,x,y,V):
+        self.psi = psi # Heading angle relative to global ref frame (x = north, y = east) in DEGREES
+        self.x = x
+        self.y = y
+        self.V = V
+        self.xd = V * np.cos(np.deg2rad(psi))
+        self.yd = V * np.sin(np.deg2rad(psi))  
 
 class PNOptions:
     def __init__(self, return_R=False,return_Rdot=False,return_Vc=False,return_lambda=False,return_lambdad=False):
@@ -13,10 +43,10 @@ class PNOptions:
 
 class PN:
     def __init__(self, pursuer, target, N=3, options=None):
-        if not isinstance(target, Vehicle):
-            raise TypeError(f"Pursuer is instance of {type(pursuer)} and not proportional_navigation.Vehicle")
-        if not isinstance(pursuer, Vehicle):
-            raise TypeError(f"Target is instance of {type(pursuer)} and not proportional_navigation.Vehicle")
+        if not isinstance(target, Body):
+            raise TypeError(f"Pursuer is type {type(pursuer)} and not proportional_navigation.Body")
+        if not isinstance(pursuer, Body):
+            raise TypeError(f"Target is type {type(pursuer)} and not proportional_navigation.Body")
 
         if not isinstance(N, float):
             if not isinstance(N, int):
