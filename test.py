@@ -28,6 +28,42 @@ class TestExceptions(unittest.TestCase):
     def test_sameCoords(self):
         with self.assertRaises(PN.exceptions.OutOfBoundsRangeError):
             PN.PN(PN.HeadingVelocity(0,0,0,0),PN.GlobalVelocity(0,0,0,0)).calculate()
+
+class TestModels(unittest.TestCase):
+    def test_HeadingVelocity(self):
+        psi1 = 30
+        psi2 = 45
+        x = 0
+        y = 0
+        V = 100
+        model = PN.HeadingVelocity(psi1,x,y,V)
+
+        self.assertEqual(model.psi, psi1)
+        self.assertEqual(model.x, x)
+        self.assertEqual(model.y, y)
+        self.assertEqual(model.V, V)
+        self.assertAlmostEqual(model.xd,86.603,3)
+        self.assertAlmostEqual(model.yd,50,3)
+
+        model.psi = psi2
+        self.assertEqual(model.psi, psi2)
+        self.assertEqual(model.x, x)
+        self.assertEqual(model.y, y)
+        self.assertEqual(model.V, V)
+        self.assertAlmostEqual(model.xd,70.711,3)
+        self.assertAlmostEqual(model.yd,70.711,3)
+
+    def test_GlobalVelocity(self):
+        x = 0
+        y = 0
+        xd = 45
+        yd = 60
+        model = PN.GlobalVelocity(x,y,xd,yd)
+
+        self.assertEqual(model.x, x)
+        self.assertEqual(model.y, y)
+        self.assertEqual(model.xd, xd)
+        self.assertEqual(model.yd, yd)
         
 
 class TestPNOptions(unittest.TestCase):
