@@ -5,7 +5,7 @@ A package to easily do [proportional navigation](https://en.wikipedia.org/wiki/P
 
 ## Explanation on notation
 
-From the below figure, it is clear that we are using velocity/heading model for each body. Such that V is the magnitude of velocity, psi is heading relative to world x-axis, and x and y of the body is relative to the world axes.
+From the below figure, it is clear that we are using velocity/heading model for each body (`proportional_navigation.HeadingVelocity(psi,x,y,V)`). Such that V is the magnitude of velocity, psi is heading relative to world x-axis, and x and y of the body is relative to the world axes. However,`proportional_navigation.GlobalVelocity(x,y,xd,yd)` also exists for convenience.
 
 ![Axes](images/axes.png)
 
