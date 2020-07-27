@@ -4,12 +4,12 @@ with open("README.md", "r") as fh:
     long_description = fh.read()
 
 setuptools.setup(
-    name="proportional_navigation-iwishiwasaneagle",
-    version="0.1",
+    name="proportional_navigation",
+    version="1.0",
     author="Jan-Hendrik Ewers",
     author_email="jh.ewers@gmail.com",
     description="A package to do proportional navigation",
-    long_description="A package to do proportional navigation as outlined in https://en.wikipedia.org/wiki/Proportional_navigation",
+    long_description=long_description,
     long_description_content_type="text/markdown",
     url="https://github.com/iwishiwasaneagle/proportional_navigation",
     packages=setuptools.find_packages(),
