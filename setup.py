@@ -5,7 +5,7 @@ with open("README.md", "r") as fh:
 
 setuptools.setup(
     name="proportional_navigation",
-    version="1.1.1",
+    version="1.1.2",
     author="Jan-Hendrik Ewers",
     author_email="jh.ewers@gmail.com",
     description="A package to do proportional navigation",
