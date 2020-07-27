@@ -25,26 +25,9 @@ class GlobalVelocity(Vehicle):
     def __init__(self,x,y,xd,yd):
         self.x = x
         self.y = y
-        self._xd = xd
-        self._yd = yd     
-        self._psi = np.arccos(xd/np.sqrt(xd*xd + yd*yd))
+        self.xd = xd
+        self.yd = yd     
+
     @property
     def psi(self):
-        return self._psi
-    @psi.setter
-    def psi(self, value):
-        self._psi = value    
-    @property
-    def xd(self):
-        return self._xd
-    @xd.setter
-    def xd(self, value):
-        self._xd = value
-        self._psi = np.arccos(value/np.sqrt(value*value + self._yd*self._yd))
-    @property
-    def yd(self):
-        return self._yd
-    @yd.setter
-    def psi(self, value):
-        self._yd = value
-        self._psi = np.arccos(value/np.sqrt(value*value + self._xd*self._xd))
+        return np.rad2deg(np.arccos(self.xd/np.sqrt(self.xd*self.xd + self.yd*self.yd)))
