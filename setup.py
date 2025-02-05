@@ -7,7 +7,7 @@ setuptools.setup(
     name="proportional_navigation",
     version="1.1.2",
     author="Jan-Hendrik Ewers",
-    author_email="jh.ewers@gmail.com",
+    author_email="me@janhendrikewers.uk",
     description="A package to do proportional navigation",
     long_description=long_description,
     long_description_content_type="text/markdown",
@@ -18,5 +18,5 @@ setuptools.setup(
         "License :: OSI Approved :: MIT License",
         "Operating System :: OS Independent",
     ],
-    python_requires='>=3.6',
+    python_requires='>=3.10',
 )
